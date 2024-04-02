@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Enter the first number: ");
+            int firstNumber = sc.nextInt();
+
+            System.out.print("Enter the second number: ");
+            int secondNumber = sc.nextInt();
+
+            System.out.print("Enter the type of operation you want to perform (+, -, *, /, %): ");
+            String operation = sc.next();
+
+            int result = performOperation(firstNumber, secondNumber, operation);
+            System.out.println("Your answer is: " + result);
+
+            System.out.print("Do you want to perform another operation? (y/n): ");
+            String continueResponse = sc.next();
+            if (!continueResponse.equals("y")) {
+                break;
+            }
+        }
+
+        System.out.println("Thanks for using the calculator!");
+    }
+
+    public static int performOperation(int firstNumber, int secondNumber, String operation) {
+        int result = 0;
+        switch (operation) {
+            case "+":
+                result = firstNumber + secondNumber;
+                break;
+            case "-":
+                result = firstNumber - secondNumber;
+                break;
+            case "*":
+                result = firstNumber * secondNumber;
+                break;
+            case "%":
+                result = firstNumber % secondNumber;
+                break;
+            case "/":
+                if (secondNumber == 0) {
+                    System.out.println("Error: Division by zero is not allowed.");
+                    return 0;
+                }
+                result = firstNumber / secondNumber;
+                break;
+            default:
+                System.out.println("Invalid operation");
+                break;
+        }
+        return result;
+    }
+}
